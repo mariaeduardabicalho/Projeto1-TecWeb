@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%--  <jsp:useBean id="Cria" class="br.edu.insper.Cria"/>
- --%>   
+
    <form action = "Posta" method = "POST">
-      Titulo: <input type = "text" name = "nome"><br/>
-      Conteudo: <input type = "text" name = "altura" /><br/>
-      Tipo: <input type = "text" name = "tipo" />
+      Titulo: <input type = "text" name = "nome_doc"><br/>
+      Conteudo: <input type = "text" name = "conteudo" /><br/>
+      Tipo: <input type = "text" name = "tipo_doc" /><br/>
+      Categoria:<input type = "text" name = "categoria" />
       
       <input type = "submit" value = "Submit" />
    </form>

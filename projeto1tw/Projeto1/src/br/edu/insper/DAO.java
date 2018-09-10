@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -29,7 +28,7 @@ public class DAO {
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.
-			 prepareStatement("SELECT * FROM Notas");
+			 prepareStatement("SELECT * FROM Notasteste");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,9 +38,10 @@ public class DAO {
 		while (rs.next()) {
 		Notas Notas1 = new Notas();
 		Notas1.setId(rs.getInt("id"));
-		Notas1.setNome(rs.getString("nome"));
+		Notas1.setNome_doc(rs.getString("nome_doc"));
 		Notas1.setConteudo(rs.getString("conteudo"));
 		Notas1.setTipo_doc(rs.getString("tipo_doc"));
+		Notas1.setCategoria(rs.getString("categoria"));
 		Notas.add(Notas1);
 		}
 		
@@ -50,8 +50,8 @@ public class DAO {
 		return Notas;
 	}
 	public void adiciona(Notas nota) throws SQLException {
-		String sql = "INSERT INTO Notas" +
-		"(nome,conteudo , tipo_doc) values(?,?,?)";
+		String sql = "INSERT INTO Notasteste" +
+		"(nome_doc,conteudo , tipo_doc, categoria) values(?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -59,14 +59,35 @@ public class DAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		stmt.setString(1,nota.getNome());
+		stmt.setString(1,nota.getNome_doc());
 		
 		stmt.setString(2,nota.getConteudo());
 		
 		stmt.setString(3,nota.getTipo_doc());
 		
+		stmt.setString(4,nota.getCategoria());
+		
 		stmt.execute();
 		stmt.close();
+		}
+	
+	public void edita(Notas nota) throws SQLException {
+		String sql = "UPDATE Notasteste SET " +
+		 "nome_doc=?, conteudo=?, tipo_doc=?, categoria=? WHERE id=?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		stmt.setString(1,nota.getNome_doc());
+		
+		stmt.setString(2,nota.getConteudo());
+		
+		stmt.setString(3,nota.getTipo_doc());
+		
+		stmt.setString(4,nota.getCategoria());
 		}
 	public void close() {
 		try {

@@ -17,13 +17,18 @@
 	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
 	<ul>
 	
-	<c:forEach var="nota" items="${dao.Notas}" varStatus="id">
+	<c:forEach var="nota" items="${dao.lista}" varStatus="id">
 	<li>
 	<a href = "#">
-	<h2>${nota.getNome()}</h2>
-	<p>${nota.getConteudo()}</p></a>
-	</li>
+	<h2>${nota.nome_doc}</h2>
+	<p>${nota.conteudo}</p></a>
+	<form action="Edita" method="post>
+    <input type="submit" value="edita"
+         name="Submit" id="frm1_submit" />
+</form>
 	
+	</li>
+	adicionaNota.jsp
 
 
 	</c:forEach>

@@ -1,6 +1,5 @@
 package br.edu.insper;
 
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Edita
+ * Servlet implementation class ListaNotas
  */
-@WebServlet("/Edita")
-public class Edita extends HttpServlet {
+@WebServlet("/ListaNotas")
+public class ListaNotas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Edita() {
+    public ListaNotas() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,11 +36,6 @@ public class Edita extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		System.out.println("oi");
 	}
-	
-	//protected void 
-	//}
-	
 
 }

@@ -52,9 +52,11 @@ public class Posta extends HttpServlet {
     			e.printStackTrace();
     		}
     		 Notas nota = new Notas();
-    		 nota.setNome(request.getParameter("nome"));
+    		 nota.setNome_doc(request.getParameter("nome_doc"));
     		 nota.setConteudo(request.getParameter("conteudo"));
     		 nota.setTipo_doc(request.getParameter("tipo_doc"));
+    		 nota.setCategoria(request.getParameter("categoria"));
+    		 
     		 
 
 
