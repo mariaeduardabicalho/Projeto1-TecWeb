@@ -1,5 +1,6 @@
 package br.edu.insper;
 
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,16 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Iniciar1
+ * Servlet implementation class Apaga
  */
-@WebServlet("/Iniciar1")
-public class Iniciar1 extends HttpServlet {
+@WebServlet("/Apaga")
+public class Apaga extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public Iniciar1() {
+    public Apaga() {
+        super();
         // TODO Auto-generated constructor stub
     }
 

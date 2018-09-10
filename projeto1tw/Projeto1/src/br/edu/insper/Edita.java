@@ -1,3 +1,4 @@
+package br.edu.insper;
 
 
 import java.io.IOException;
@@ -8,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Posta
+ * Servlet implementation class Edita
  */
-@WebServlet("/Posta")
-public class Posta extends HttpServlet {
+@WebServlet("/Edita")
+public class Edita extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Posta() {
+    public Edita() {
         super();
         // TODO Auto-generated constructor stub
     }
