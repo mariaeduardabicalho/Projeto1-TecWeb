@@ -22,11 +22,36 @@ public class DAO {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	 connection = DriverManager.getConnection("jdbc:mysql://localhost/basededados", "root", "Du858773");
+	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "Du858773");
+	}
+	public List<Notas> getLista() throws SQLException {
+		List<Notas> Notas = new ArrayList<Notas>();
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.
+			 prepareStatement("SELECT * FROM Notas");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ResultSet rs = stmt.executeQuery();
+		
+		while (rs.next()) {
+		Notas Notas1 = new Notas();
+		Notas1.setId(rs.getInt("id"));
+		Notas1.setNome(rs.getString("nome"));
+		Notas1.setConteudo(rs.getString("conteudo"));
+		Notas1.setTipo_doc(rs.getString("tipo_doc"));
+		Notas.add(Notas1);
+		}
+		
+		rs.close();
+		stmt.close();
+		return Notas;
 	}
 	public void adiciona(Notas nota) throws SQLException {
-		String sql = "INSERT INTO Pessoa" +
-		"(nome,nascimento,altura) values(?,?,?)";
+		String sql = "INSERT INTO Notas" +
+		"(nome,conteudo , tipo_doc) values(?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -36,7 +61,10 @@ public class DAO {
 		}
 		stmt.setString(1,nota.getNome());
 		
-		stmt.setString(3,nota.getConteudo());
+		stmt.setString(2,nota.getConteudo());
+		
+		stmt.setString(3,nota.getTipo_doc());
+		
 		stmt.execute();
 		stmt.close();
 		}

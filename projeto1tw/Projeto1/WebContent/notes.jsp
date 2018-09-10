@@ -9,7 +9,7 @@
 
 
 <head>
-<link rel="stylesheet" type="text/css" href="notas.css">
+<link rel="stylesheet" type="text/css" href="notas.css">'
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -24,8 +24,11 @@
 	<p>${nota.getConteudo()}</p></a>
 	</li>
 	
+
+
 	</c:forEach>
 	</ul>
+
 
 
 </body>
