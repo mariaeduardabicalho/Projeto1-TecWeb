@@ -16,11 +16,6 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-
-
-
-
-
 /**
  * Servlet implementation class Posta
  */
@@ -59,6 +54,7 @@ public class Posta extends HttpServlet {
     		 Notas nota = new Notas();
     		 nota.setNome(request.getParameter("nome"));
     		 nota.setConteudo(request.getParameter("conteudo"));
+    		 nota.setTipo_doc(request.getParameter("tipo_doc"));
     		 
 
 
@@ -70,7 +66,8 @@ public class Posta extends HttpServlet {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-    		 
+    		 response.sendRedirect("notes.jsp");
+    		 dao.close();
     		 }
     		 
     		}

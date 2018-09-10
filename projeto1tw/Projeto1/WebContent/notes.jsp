@@ -9,7 +9,7 @@
 
 
 <head>
-<link rel="stylesheet" type="text/css" href="notas.css">
+<link rel="stylesheet" type="text/css" href="notas.css">'
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -24,6 +24,7 @@
       <p>Text Content 1</p>
     </a>
   </li>
+  
   <li>
     <a href="#">
       <h2>nota 2</h2>
