@@ -14,23 +14,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
-
-<ul>
+	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
+	<ul>
 	
-  <li>
-    <a href="#">
-      <h2>nota 1</h2>
-      <p>Text Content 1</p>
-    </a>
-  </li>
-  <li>
-    <a href="#">
-      <h2>nota 2</h2>
-      <p>Text Content 2</p>
-    </a>
-  </li>
-</ul>
+	<c:forEach var="nota" items="${dao.Notas}" varStatus="id">
+	<li>
+	<a href = "#">
+	<h2>${nota.getNome()}</h2>
+	<p>${nota.getConteudo()}</p></a>
+	</li>
+	
+	</c:forEach>
+	</ul>
+
 
 </body>
 </html>
