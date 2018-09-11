@@ -78,6 +78,37 @@ public class DAO {
 		stmt.close();
 		return Notas;
 	}
+	
+	public void adicionau(Usuario usuario) throws SQLException {
+		String sql = "INSERT INTO usuario" +
+		"(primeiro_nome,sobrenome , email, tipo, usuario, senha) values(?,?,?,?,?)";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		stmt.setString(1,usuario.getPrimeiro_nome());
+		
+		stmt.setString(2,usuario.getSobrenome());
+		
+		stmt.setString(3,usuario.getEmail());
+		
+		stmt.setString(4,usuario.getTipo());
+		
+		stmt.setString(5,usuario.getUsuario());
+		
+		stmt.setString(5,usuario.getSenha());
+		
+		//System.out.println("atualizou");
+		
+		
+		stmt.execute();
+		stmt.close();
+		}
+	
+
 	public void adiciona(Notas nota) throws SQLException {
 		String sql = "INSERT INTO Notasteste" +
 		"(nome_doc,conteudo , tipo_doc, categoria) values(?,?,?,?)";
@@ -96,12 +127,13 @@ public class DAO {
 		
 		stmt.setString(4,nota.getCategoria());
 		
-		System.out.println("atualizou");
+		//System.out.println("atualizou");
 		
 		
 		stmt.execute();
 		stmt.close();
 		}
+	
 	public void apaga(Integer id) throws SQLException {
 		String sql = "DELETE FROM Notasteste WHERE id = ?";
 		PreparedStatement stmt = null;

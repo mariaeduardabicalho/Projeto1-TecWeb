@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <form action = "Cria" method = "POST">
+ <form action = "Cria" method = "GET">
       Nome: <input type = "text" name = "primeiro_nome"><br/>
       Sobrenome: <input type = "text" name = "sobrenome" /><br/>
       Tipo: <input type = "text" name = "tipo" /><br/>

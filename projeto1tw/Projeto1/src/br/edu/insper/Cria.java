@@ -1,6 +1,8 @@
 package br.edu.insper;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,35 @@ public class Cria extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		DAO dao = null;
+		try {
+			dao = new DAO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Usuario usuario = new Usuario();
+		usuario.setPrimeiro_nome(request.getParameter("primeiro_nome"));
+		usuario.setSobrenome(request.getParameter("sobrenome"));
+		usuario.setEmail(request.getParameter("email"));
+		usuario.setTipo(request.getParameter("tipo"));
+		usuario.setUsuario(request.getParameter("usuario"));
+		usuario.setSenha(request.getParameter("senha"));
+		
+		
+
+
+		try {
+			dao.adicionau(usuario);
+			System.out.println("entrou");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.sendRedirect("notes.jsp");
+		dao.close();
+		
 	}
 
 	/**
