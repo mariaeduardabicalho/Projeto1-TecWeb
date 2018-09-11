@@ -21,7 +21,35 @@ public class DAO {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "");
+	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "Du858773");
+	}
+	public List<Usuario> getListau() throws SQLException {
+		List<Usuario> usuario = new ArrayList<Usuario>();
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.
+			 prepareStatement("SELECT * FROM usuario");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ResultSet rs = stmt.executeQuery();
+		
+		while (rs.next()) {
+		Usuario usuario1 = new Usuario();
+		usuario1.setId(rs.getInt("id"));
+		usuario1.setPrimeiro_nome(rs.getString("primeiro_nome"));
+		usuario1.setSobrenome(rs.getString("sobrenome"));
+		usuario1.setEmail(rs.getString("email"));
+		usuario1.setTipo(rs.getString("tipo"));
+		usuario1.setSenha(rs.getString("senha"));
+		usuario.add(usuario1);
+		
+		}
+		
+		rs.close();
+		stmt.close();
+		return usuario;
 	}
 	public List<Notas> getLista() throws SQLException {
 		List<Notas> Notas = new ArrayList<Notas>();

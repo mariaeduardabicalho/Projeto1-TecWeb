@@ -57,10 +57,7 @@ public class Posta extends HttpServlet {
     		 nota.setTipo_doc(request.getParameter("tipo_doc"));
     		 nota.setCategoria(request.getParameter("categoria"));
     		 
-    		 
-
-
-
+    		
 
     		 try {
     			dao.adiciona(nota);

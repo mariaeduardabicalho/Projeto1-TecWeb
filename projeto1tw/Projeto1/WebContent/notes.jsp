@@ -13,32 +13,36 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+PROJETO 1 TEC WEB
 <body>
 	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
+	
 	<ul>
 	
 	<c:forEach var="nota" items="${dao.lista}" varStatus="id">
 	<li>
 	<a href = "#">
-	<h2>${nota.nome_doc}</h2>
-	<p>${nota.conteudo}</p></a>
+	 <form action="Edita" method="GET">
+	 
+     <input type = "text" name = "nome_doc" value= ${nota.nome_doc} ><br/>
+     <input type = "text" name = "categoria" value= ${nota.categoria} ><br/>
+     <input type = "hidden" name = "tipo_doc" value= ${nota.tipo_doc} ><br/>
+     <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
+     <input type="hidden" name="id" value=${nota.id}>
+     
+      <input type="submit" value="Editar" />
+   </form> </a>
+
 	
-	<form action="Edita" method="GET">
-    <input type="submit" value="Editar"
-         name="Submit" id="frm1_submit" />
+   <form action="Apaga" method="GET">
+   
+   	<input type="hidden" name="id" value=${nota.id}>
+   
+    <input type="submit" value="Apagar" />
+   </form>
 
 	</li>
-	
-
 	</c:forEach>
 	</ul>
-</form>
-	<form action="Apaga" method="GET">
-    <input type="submit" value="Apagar"
-         name="Submit" id="frm2_submit" />
-</form>
-	
-
-
 </body>
 </html>

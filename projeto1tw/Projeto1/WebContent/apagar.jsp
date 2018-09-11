@@ -10,7 +10,7 @@
 
   <form action = "Apaga" method = "POST">
   
-  	  Selecione a ID da nota que quer apagar: <input type = "text" name = "id">
+  	   ID da nota que quer apagar: <input type = "text" name = "id">
      
       <input type = "submit" value = "Submit" />
    </form>
