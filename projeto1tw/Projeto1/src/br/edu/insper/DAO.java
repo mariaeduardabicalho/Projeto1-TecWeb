@@ -43,6 +43,7 @@ public class DAO {
 		Notas1.setTipo_doc(rs.getString("tipo_doc"));
 		Notas1.setCategoria(rs.getString("categoria"));
 		Notas.add(Notas1);
+		
 		}
 		
 		rs.close();
@@ -67,6 +68,9 @@ public class DAO {
 		
 		stmt.setString(4,nota.getCategoria());
 		
+		System.out.println("atualizou");
+		
+		
 		stmt.execute();
 		stmt.close();
 		}
@@ -88,6 +92,8 @@ public class DAO {
 		stmt.setString(3,nota.getTipo_doc());
 		
 		stmt.setString(4,nota.getCategoria());
+
+		stmt.setInt(5, nota.getId());
 		}
 	public void close() {
 		try {

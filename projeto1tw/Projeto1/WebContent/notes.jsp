@@ -22,14 +22,14 @@
 	<a href = "#">
 	<h2>${nota.nome_doc}</h2>
 	<p>${nota.conteudo}</p></a>
-	<form action="Edita" method="post>
-    <input type="submit" value="edita"
+	
+	<form action="Edita" method="GET">
+    <input type="submit" value="Editar"
          name="Submit" id="frm1_submit" />
 </form>
 	
 	</li>
-	adicionaNota.jsp
-
+	
 
 	</c:forEach>
 	</ul>
