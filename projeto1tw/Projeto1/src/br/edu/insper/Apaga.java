@@ -2,6 +2,8 @@ package br.edu.insper;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +30,7 @@ public class Apaga extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("apagar.jsp");
 	}
 
 	/**
@@ -36,7 +38,26 @@ public class Apaga extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		DAO dao = null;
+		try {
+			dao = new DAO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		 
+		 
+		 try {
+			dao.apaga(Integer.valueOf(request.getParameter("id")));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 response.sendRedirect("notes.jsp");
+		 dao.close();
+		 
+		 
+		
 	}
 
 }

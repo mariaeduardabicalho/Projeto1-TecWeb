@@ -21,7 +21,7 @@ public class DAO {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "Du858773");
+	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "");
 	}
 	public List<Notas> getLista() throws SQLException {
 		List<Notas> Notas = new ArrayList<Notas>();
@@ -74,6 +74,23 @@ public class DAO {
 		stmt.execute();
 		stmt.close();
 		}
+	public void apaga(Integer id) throws SQLException {
+		String sql = "DELETE FROM Notasteste WHERE id = ?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("apagou");
+		stmt.setLong(1, id);
+		
+		
+		stmt.execute();
+		stmt.close();
+		}
 	
 	public void edita(Notas nota) throws SQLException {
 		String sql = "UPDATE Notasteste SET " +
@@ -94,6 +111,8 @@ public class DAO {
 		stmt.setString(4,nota.getCategoria());
 
 		stmt.setInt(5, nota.getId());
+		stmt.execute();
+		stmt.close();
 		}
 	public void close() {
 		try {

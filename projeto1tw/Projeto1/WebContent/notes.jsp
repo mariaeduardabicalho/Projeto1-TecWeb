@@ -26,14 +26,18 @@
 	<form action="Edita" method="GET">
     <input type="submit" value="Editar"
          name="Submit" id="frm1_submit" />
-</form>
-	
+
 	</li>
 	
 
 	</c:forEach>
 	</ul>
-
+</form>
+	<form action="Apaga" method="GET">
+    <input type="submit" value="Apagar"
+         name="Submit" id="frm2_submit" />
+</form>
+	
 
 
 </body>
