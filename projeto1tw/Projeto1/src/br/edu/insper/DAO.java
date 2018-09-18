@@ -21,7 +21,7 @@ public class DAO {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "");
+	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "Du858773");
 	}
 	public List<Usuario> getListau() throws SQLException {
 		List<Usuario> usuario = new ArrayList<Usuario>();
@@ -183,8 +183,26 @@ public class DAO {
 			e.printStackTrace();
 		}
 }
-	public void login(Usuario usuario) {
+	public Integer pegarid(String usuario) throws SQLException {
+		Usuario usuario1 = new Usuario();
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.
+			 prepareStatement("SELECT usuario FROM usuario where" );
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ResultSet rs = stmt.executeQuery();
 		
-		// TODO Auto-generated method stub
+		while (rs.next()) {
 		
-	}}
+		usuario1.setId(rs.getInt("id"));
+		Integer usuarioid= usuario1.getId();
+		}
+		
+		rs.close();
+		stmt.close();
+		return usuario1.getId();
+	}
+	}

@@ -49,6 +49,16 @@ PROJETO 1 TEC WEB
     <input type="submit" value="Login" /> 
    </form>-->
 	</ul>
+	<% String usuario = (String)request.getAttribute("usuario");
+	System.out.println(usuario);%>
+	<form action="FicarLogado" method="GET">
+    
+   	<input type="hidden" name="username" value=${usuario}>
+   	
+   <input type="hidden" name="page" value="adicionaNota.jsp">
+    <input type="submit" value="Adicionar Nota" />
+   </form>
+	
 	
 	
 </body>

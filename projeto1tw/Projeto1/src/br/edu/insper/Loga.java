@@ -52,20 +52,24 @@ public class Loga extends HttpServlet {
 			
 			for (Usuario usuariol:dao.getListau()) {
 				//System.out.println("entrou no for");
-//				System.out.println(request.getParameter("password").getClass());
-//				System.out.println(request.getParameter("username").getClass());
-//				System.out.println(usuariol.getUsuario().getClass());
-//				System.out.println(usuariol.getSenha().getClass());
-				System.out.println(request.getParameter("username").equals( usuariol.getUsuario()));
-				System.out.println(request.getParameter("password").equals( usuariol.getSenha()));
+
+//				System.out.println(request.getParameter("username").equals( usuariol.getUsuario()));
+//				System.out.println(request.getParameter("password").equals( usuariol.getSenha()));
 				 if (request.getParameter("username").equals( usuariol.getUsuario()) && request.getParameter("password").equals( usuariol.getSenha())) {
 					 System.out.println("ENTROU NO IF");
 					 usuario.setUsuario(request.getParameter("username"));
-					 usuario.setSenha(request.getParameter("password"));			 
-					 dao.login(usuario);
-					System.out.println("entrou");	
-					response.sendRedirect("notes.jsp");
-					check = true;
+					 //usuario.setSenha(request.getParameter("password"));
+					 request.setAttribute("usuario", usuario.getUsuario());
+					 request.getRequestDispatcher("notes.jsp").forward(request, response);
+					 
+					 System.out.println("entrou");
+					 
+					 //String theURL = "notes.jsp?"+"username="+usuario.getUsuario()+"&password="+usuario.getSenha();
+					// theURL = response.encodeRedirectURL(theURL);
+					 //response.sendRedirect(theURL);
+					//response.sendRedirect("notes.jsp?username=usuario.getUsuario()& password=usuario.getSenha()");
+					
+					 check = true;
 				 }
 				 	 
 			 }
@@ -89,9 +93,10 @@ public class Loga extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("logou");
-		response.sendRedirect("login.jsp");
-		doGet(request, response);
+		
+		
+		;
+		//doGet(request, response);
 	}
 
 }
