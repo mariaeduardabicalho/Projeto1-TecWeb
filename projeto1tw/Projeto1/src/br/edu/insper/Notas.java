@@ -1,11 +1,16 @@
 package br.edu.insper;
 
+import java.io.InputStream;
+
+import com.mysql.cj.jdbc.Blob;
+
 public class Notas {
 	private Integer id;
 	private String nome_doc;
 	private String categoria;
 	private String tipo_doc;
 	private String conteudo;
+	private InputStream imagem;
 
 	public Integer getId() {return this.id;}
 	public void setId(Integer id) {this.id = id;}
@@ -21,6 +26,12 @@ public class Notas {
 	
 	public String getConteudo() {return this.conteudo;}
 	public void setConteudo(String conteudo) {this.conteudo = conteudo;}
+	public InputStream getImagem() {
+		return imagem;
+	}
+	public void setImagem(InputStream imagem) {
+		this.imagem = imagem;
+	}
 	
 
 }

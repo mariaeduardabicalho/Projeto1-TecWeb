@@ -1,9 +1,11 @@
 package br.edu.insper;
 
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
 
 //import DAO;
 //import Notas;
@@ -51,11 +52,19 @@ public class Posta extends HttpServlet {
 	 protected void doPost(HttpServletRequest request,
     		 HttpServletResponse response)
     		 throws ServletException, IOException {
-		    String description = request.getParameter("conteudo"); // Retrieves <input type="text" name="description">
-   		 	System.out.println(description);
+		    String conteudo = request.getParameter("conteudo"); // Retrieves <input type="text" name="description">
+   		 	
 		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
+		    System.out.println(filePart.getClass());
 		    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+		    System.out.println(fileName.getClass());
+		    System.out.println(fileName);
 		    InputStream fileContent = (InputStream) filePart.getInputStream();
+		    Image image = ImageIO.read(fileContent);
+		    String contents = fileContent.toString();
+		    byte[] teste = contents.getBytes();
+		    System.out.println(filePart.getClass());
+		    System.out.println(teste);
     		 DAO dao = null;
     		try {
     			dao = new DAO();
@@ -65,18 +74,21 @@ public class Posta extends HttpServlet {
     		}
     		 Notas nota = new Notas();
     		 
-    		 if(description != null) {
+    		 if(conteudo != null) {
     		 nota.setNome_doc(request.getParameter("nome_doc"));
     		 nota.setConteudo(request.getParameter("conteudo"));
     		 nota.setTipo_doc(request.getParameter("tipo_doc"));
     		 nota.setCategoria(request.getParameter("categoria"));
+//    		 nota.setImagem("sem imagem".getBytes());
     		 
     		 }
     		 else {
         		 nota.setNome_doc(request.getParameter("nome_doc"));
         		 nota.setConteudo(request.getParameter("arquivo"));
+        		 nota.setImagem(fileContent);
         		 nota.setTipo_doc(request.getParameter("tipo_doc"));
         		 nota.setCategoria(request.getParameter("categoria"));
+        		 nota.setConteudo("nota com imagem");
     		 }
 
     		 try {

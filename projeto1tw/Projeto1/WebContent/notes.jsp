@@ -24,11 +24,15 @@ PROJETO 1 TEC WEB
 	<a href = "#">
 	 <form action="Edita" method="GET">
 	 
+	 <img>${nota.imagem }</img>
+	 
      <input type = "text" name = "nome_doc" value= ${nota.nome_doc} ><br/>
      <input type = "text" name = "categoria" value= ${nota.categoria} ><br/>
      <input type = "hidden" name = "tipo_doc" value= ${nota.tipo_doc} ><br/>
      <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
-     <input type="hidden" name="id" value=${nota.id}>
+     <input type="hidden" name="id" value = ${nota.id}>
+     
+     
      
       <input type="submit" value="Editar" />
    </form> </a>

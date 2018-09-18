@@ -112,7 +112,7 @@ public class DAO {
 
 	public void adiciona(Notas nota) throws SQLException {
 		String sql = "INSERT INTO Notasteste" +
-		"(nome_doc,conteudo , tipo_doc, categoria) values(?,?,?,?)";
+		"(nome_doc,conteudo , tipo_doc, categoria,img) values(?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -127,6 +127,8 @@ public class DAO {
 		stmt.setString(3,nota.getTipo_doc());
 		
 		stmt.setString(4,nota.getCategoria());
+		
+		stmt.setBlob(5, nota.getImagem());
 		
 		//System.out.println("atualizou");
 		
