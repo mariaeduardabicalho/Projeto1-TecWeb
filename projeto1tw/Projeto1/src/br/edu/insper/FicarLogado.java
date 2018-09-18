@@ -45,9 +45,10 @@ public class FicarLogado extends HttpServlet {
 		usuario.setUsuario(request.getParameter("username"));
 		Integer usuarioid= null;
 		try {
-			 usuarioid = dao.pegarid(usuario.getUsuario());
+			 usuarioid = dao.pegarId(usuario.getUsuario());
+			 System.out.println(usuarioid);
 			 request.setAttribute("usuarioid", usuarioid);
-			request.getRequestDispatcher("adicionaNota.jsp").forward(request, response);
+			 request.getRequestDispatcher("adicionaNota.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -70,13 +70,14 @@ public class Posta extends HttpServlet {
     		 nota.setConteudo(request.getParameter("conteudo"));
     		 nota.setTipo_doc(request.getParameter("tipo_doc"));
     		 nota.setCategoria(request.getParameter("categoria"));
-    		 
+    		 nota.setUsuarioid(Integer.parseInt(request.getParameter("usuarioid")));
     		 }
     		 else {
         		 nota.setNome_doc(request.getParameter("nome_doc"));
         		 nota.setConteudo(request.getParameter("arquivo"));
         		 nota.setTipo_doc(request.getParameter("tipo_doc"));
         		 nota.setCategoria(request.getParameter("categoria"));
+        		 nota.setUsuarioid(Integer.parseInt(request.getParameter("usuarioid")));
     		 }
 
     		 try {

@@ -2,6 +2,7 @@ package br.edu.insper;
 
 public class Notas {
 	private Integer id;
+	private Integer usuarioid;
 	private String nome_doc;
 	private String categoria;
 	private String tipo_doc;
@@ -9,6 +10,9 @@ public class Notas {
 
 	public Integer getId() {return this.id;}
 	public void setId(Integer id) {this.id = id;}
+	
+	public Integer getUsuarioid() {return this.usuarioid;}
+	public void setUsuarioid(Integer usuarioid) {this.usuarioid = usuarioid;}
 	
 	public String getNome_doc() {return this.nome_doc;}
 	public void setNome_doc(String nome_doc) {this.nome_doc = nome_doc;}

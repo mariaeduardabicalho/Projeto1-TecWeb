@@ -20,7 +20,7 @@
    </form>
   -->
 <div style = "text-align:center"><h1>Preencha sua Nota</h1></div>
-  
+
 <section class = "container">
 
 	<div class = "col-lg-4"></div>  
@@ -33,7 +33,8 @@
 	 	</div>
   
 		<div>
-			<p>Escolha o tipo da sua nota: </p><button type = "button" onClick="loadDoc('notaTexto.jsp',myFunction)" name="tipo_doc" value = "Texto">Texto</button>
+			<p>Escolha o tipo da sua nota: </p><button 
+			type = "button" onClick="loadDoc('notaTexto.jsp',myFunction)" name="tipo_doc" value = "Texto">Texto</button>
 			<button type = "button" onClick="loadDoc('notaImagem.jsp',myFunction)" name="tipo_doc" value = "Imagem">Imagem</button>
 		</div>
 
@@ -60,8 +61,11 @@
 
   
 		<div class="form-group">
+		  <% Integer usuarioid = (Integer) request.getAttribute("usuarioid");
+	System.out.println(usuarioid);%>
 		    <label for="categoria">Categoria</label>
 		    <input type="text" class="form-control" name = "categoria"/>
+		    <input type="hidden"  name = "usuarioid" value= usuarioid />
 		</div>
   
 		<input type = "submit" value = "Enviar" />

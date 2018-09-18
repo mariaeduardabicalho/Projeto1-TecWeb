@@ -16,3 +16,13 @@ CREATE TABLE usuario (
 senha VARCHAR(50) NOT NULL, 
 PRIMARY KEY (ID) 
  );
+
+ CREATE TABLE Notes (
+ id INT NOT NULL AUTO_INCREMENT,
+ pessoa_id INT NOT NULL REFERENCES usuario(id),
+ tipo_doc  VARCHAR(5) NOT NULL,
+categoria VARCHAR(50) ,
+conteudo VARCHAR(1000) CHARACTER SET utf8, data_postagem  DATE,
+ nome_doc VARCHAR(50) NOT NULL,
+ PRIMARY KEY(id)
+);
