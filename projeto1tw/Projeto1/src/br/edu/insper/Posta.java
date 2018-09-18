@@ -55,16 +55,15 @@ public class Posta extends HttpServlet {
 		    String conteudo = request.getParameter("conteudo"); // Retrieves <input type="text" name="description">
    		 	
 		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
-		    System.out.println(filePart.getClass());
 		    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 		    System.out.println(fileName.getClass());
 		    System.out.println(fileName);
 		    InputStream fileContent = (InputStream) filePart.getInputStream();
 		    Image image = ImageIO.read(fileContent);
 		    String contents = fileContent.toString();
-		    byte[] teste = contents.getBytes();
-		    System.out.println(filePart.getClass());
-		    System.out.println(teste);
+		    InputStream stream = new ByteArrayInputStream("sem imagem".getBytes(StandardCharsets.UTF_8));
+
+
     		 DAO dao = null;
     		try {
     			dao = new DAO();
@@ -79,8 +78,10 @@ public class Posta extends HttpServlet {
     		 nota.setConteudo(request.getParameter("conteudo"));
     		 nota.setTipo_doc(request.getParameter("tipo_doc"));
     		 nota.setCategoria(request.getParameter("categoria"));
-//    		 nota.setImagem("sem imagem".getBytes());
+    		 nota.setImagem(stream);
     		 
+
+    		 nota.setUsuarioid(Integer.parseInt(request.getParameter("usuarioid")));
     		 }
     		 else {
         		 nota.setNome_doc(request.getParameter("nome_doc"));
@@ -89,6 +90,7 @@ public class Posta extends HttpServlet {
         		 nota.setTipo_doc(request.getParameter("tipo_doc"));
         		 nota.setCategoria(request.getParameter("categoria"));
         		 nota.setConteudo("nota com imagem");
+        		 nota.setUsuarioid(Integer.parseInt(request.getParameter("usuarioid")));
     		 }
 
     		 try {

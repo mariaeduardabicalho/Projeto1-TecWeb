@@ -21,14 +21,13 @@ public class DAO {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "");
+	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "Du858773");
 	}
 	public List<Usuario> getListau() throws SQLException {
 		List<Usuario> usuario = new ArrayList<Usuario>();
 		PreparedStatement stmt = null;
 		try {
-			stmt = connection.
-			 prepareStatement("SELECT * FROM usuario");
+			stmt = connection.prepareStatement("SELECT * FROM usuario");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,7 +56,7 @@ public class DAO {
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.
-			 prepareStatement("SELECT * FROM Notasteste");
+			 prepareStatement("SELECT * FROM Notes");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,6 +66,7 @@ public class DAO {
 		while (rs.next()) {
 		Notas Notas1 = new Notas();
 		Notas1.setId(rs.getInt("id"));
+		Notas1.setId(rs.getInt("pessoa_id"));
 		Notas1.setNome_doc(rs.getString("nome_doc"));
 		Notas1.setConteudo(rs.getString("conteudo"));
 		Notas1.setTipo_doc(rs.getString("tipo_doc"));
@@ -111,8 +111,9 @@ public class DAO {
 	
 
 	public void adiciona(Notas nota) throws SQLException {
-		String sql = "INSERT INTO Notasteste" +
-		"(nome_doc,conteudo , tipo_doc, categoria,img) values(?,?,?,?,?)";
+
+		String sql = "INSERT INTO Notes" +
+		"( nome_doc,conteudo , tipo_doc, categoria, pessoa_id,img) values(?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -128,7 +129,9 @@ public class DAO {
 		
 		stmt.setString(4,nota.getCategoria());
 		
-		stmt.setBlob(5, nota.getImagem());
+		stmt.setInt(5,nota.getUsuarioid());
+		stmt.setBlob(6, nota.getImagem());
+
 		
 		//System.out.println("atualizou");
 		
@@ -138,7 +141,7 @@ public class DAO {
 		}
 	
 	public void apaga(Integer id) throws SQLException {
-		String sql = "DELETE FROM Notasteste WHERE id = ?";
+		String sql = "DELETE FROM Notes WHERE id = ?";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -156,7 +159,7 @@ public class DAO {
 		}
 	
 	public void edita(Notas nota) throws SQLException {
-		String sql = "UPDATE Notasteste SET " +
+		String sql = "UPDATE Notes SET " +
 		 "nome_doc=?, conteudo=?, tipo_doc=?, categoria=? WHERE id=?";
 		PreparedStatement stmt = null;
 		try {
@@ -185,8 +188,56 @@ public class DAO {
 			e.printStackTrace();
 		}
 }
-	public void login(Usuario usuario) {
+//	public Integer pegarid(String usuario) throws SQLException {
+//		Usuario usuario1 = new Usuario();
+//		PreparedStatement stmt = null;
+//		try {
+//			stmt = connection.
+//			 prepareStatement("SELECT usuario FROM usuario where usuario=?");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		ResultSet rs = stmt.executeQuery();
+//		
+//	
+//		stmt.setString(1, usuario);
+//		
+//		usuario1.setId(rs.getInt("id"));
+//		Integer usuarioid= usuario1.getId();
+//		
+//		
+//		rs.close();
+//		stmt.close();
+//		return usuarioid;
+//	}
+	
+	public Integer pegarId(String usuario) throws SQLException {
+		String sql = "SELECT id FROM usuario where usuario=?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		// TODO Auto-generated method stub
 		
-	}}
+		stmt.setString(1, usuario);
+		
+		ResultSet rs = stmt.executeQuery();
+		Integer id = null;
+		while (rs.next()) {
+		System.out.println(rs);
+		id=Integer.parseInt(rs.getObject(1).toString());;
+		System.out.println(id);
+		}
+		
+		rs.close();
+		stmt.close();
+		return id;
+		}
+	
+	
+	
+	}

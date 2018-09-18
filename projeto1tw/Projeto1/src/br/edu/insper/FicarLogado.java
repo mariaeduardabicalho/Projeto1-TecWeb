@@ -1,4 +1,4 @@
-	package br.edu.insper;
+package br.edu.insper;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Cria
+ * Servlet implementation class FicarLogado
  */
-@WebServlet("/Cria")
-public class Cria extends HttpServlet {
+@WebServlet("/FicarLogado")
+public class FicarLogado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Cria() {
+    public FicarLogado() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,8 +30,31 @@ public class Cria extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("logado");
+		DAO dao = null;
+		try {
+			dao = new DAO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
+		Usuario usuario = new Usuario();
+		
+		usuario.setUsuario(request.getParameter("username"));
+		Integer usuarioid= null;
+		try {
+			 usuarioid = dao.pegarId(usuario.getUsuario());
+			 System.out.println(usuarioid);
+			 request.setAttribute("usuarioid", usuarioid);
+			 request.getRequestDispatcher("adicionaNota.jsp").forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		dao.close();
 		
 	}
 
@@ -41,33 +64,6 @@ public class Cria extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		DAO dao = null;
-		try {
-			dao = new DAO();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Usuario usuario = new Usuario();
-		usuario.setPrimeiro_nome(request.getParameter("primeiro_nome"));
-		usuario.setSobrenome(request.getParameter("sobrenome"));
-		usuario.setEmail(request.getParameter("email"));
-		usuario.setTipo(request.getParameter("tipo"));
-		usuario.setUsuario(request.getParameter("usuario"));
-		usuario.setSenha(request.getParameter("senha"));
-		
-		
-
-
-		try {
-			dao.adicionau(usuario);
-			System.out.println("entrou");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		response.sendRedirect("notes.jsp");
-		dao.close();
 	}
 
 }
