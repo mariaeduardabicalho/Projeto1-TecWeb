@@ -2,17 +2,23 @@ package br.edu.insper;
 
 
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
 
 //import DAO;
 //import Notas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.ParseException;
 
@@ -20,6 +26,7 @@ import java.text.ParseException;
  * Servlet implementation class Posta
  */
 @WebServlet("/Posta")
+@MultipartConfig
 public class Posta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,10 +47,15 @@ public class Posta extends HttpServlet {
     		 PrintWriter out = response.getWriter();
     		
     		 }
-    		 @Override
-    		 protected void doPost(HttpServletRequest request,
+	 @Override
+	 protected void doPost(HttpServletRequest request,
     		 HttpServletResponse response)
     		 throws ServletException, IOException {
+		    String description = request.getParameter("conteudo"); // Retrieves <input type="text" name="description">
+   		 	System.out.println(description);
+		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
+		    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+		    InputStream fileContent = (InputStream) filePart.getInputStream();
     		 DAO dao = null;
     		try {
     			dao = new DAO();
@@ -52,12 +64,20 @@ public class Posta extends HttpServlet {
     			e.printStackTrace();
     		}
     		 Notas nota = new Notas();
+    		 
+    		 if(description != null) {
     		 nota.setNome_doc(request.getParameter("nome_doc"));
     		 nota.setConteudo(request.getParameter("conteudo"));
     		 nota.setTipo_doc(request.getParameter("tipo_doc"));
     		 nota.setCategoria(request.getParameter("categoria"));
     		 
-    		
+    		 }
+    		 else {
+        		 nota.setNome_doc(request.getParameter("nome_doc"));
+        		 nota.setConteudo(request.getParameter("arquivo"));
+        		 nota.setTipo_doc(request.getParameter("tipo_doc"));
+        		 nota.setCategoria(request.getParameter("categoria"));
+    		 }
 
     		 try {
     			dao.adiciona(nota);

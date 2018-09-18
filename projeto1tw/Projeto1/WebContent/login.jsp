@@ -12,7 +12,7 @@
 <body>
 <jsp:useBean id="dao" class="br.edu.insper.DAO"/>
  
- <form action = "Loga" method = "POST">
+ <form action = "Loga" method = "GET">
 <fieldset>
     <legend>Sign in</legend>
     
@@ -24,7 +24,7 @@
          <c:forEach var="usuario" items="${dao.listau}" varStatus="id">
 	<li>
 	
-	<c:if test=${usuario.primeiro_nome == Username  }  ></c:if>
+	<c:if test="${usuario.primeiro_nome == Username  }"></c:if>
    </li>
 	</c:forEach>
 	</ul>
@@ -33,8 +33,8 @@
     <div>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password"
-               minlength="8" required
-               placeholder="8 characters minimum" />
+               minlength="4" required
+               placeholder="4 characters minimum" />
     </div>
     
  
