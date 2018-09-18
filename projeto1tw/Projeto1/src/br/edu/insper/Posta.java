@@ -2,6 +2,7 @@ package br.edu.insper;
 
 
 import java.awt.Image;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -19,6 +20,7 @@ import javax.servlet.http.Part;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -54,13 +56,13 @@ public class Posta extends HttpServlet {
     		 throws ServletException, IOException {
 		    String conteudo = request.getParameter("conteudo"); // Retrieves <input type="text" name="description">
    		 	
-		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
-		    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-		    System.out.println(fileName.getClass());
-		    System.out.println(fileName);
-		    InputStream fileContent = (InputStream) filePart.getInputStream();
-		    Image image = ImageIO.read(fileContent);
-		    String contents = fileContent.toString();
+//		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
+		    //String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+//		    System.out.println(fileName.getClass());
+//		    System.out.println(fileName);
+//		    InputStream fileContent = (InputStream) filePart.getInputStream();
+//		    Image image = ImageIO.read(fileContent);
+//		    String contents = fileContent.toString();
 		    InputStream stream = new ByteArrayInputStream("sem imagem".getBytes(StandardCharsets.UTF_8));
 
 
@@ -86,7 +88,7 @@ public class Posta extends HttpServlet {
     		 else {
         		 nota.setNome_doc(request.getParameter("nome_doc"));
         		 nota.setConteudo(request.getParameter("arquivo"));
-        		 nota.setImagem(fileContent);
+//        		 nota.setImagem(fileContent);
         		 nota.setTipo_doc(request.getParameter("tipo_doc"));
         		 nota.setCategoria(request.getParameter("categoria"));
         		 nota.setConteudo("nota com imagem");

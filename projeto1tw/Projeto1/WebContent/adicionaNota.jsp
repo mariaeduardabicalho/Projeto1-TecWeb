@@ -65,7 +65,7 @@
 	System.out.println(usuarioid);%>
 		    <label for="categoria">Categoria</label>
 		    <input type="text" class="form-control" name = "categoria"/>
-		    <input type="hidden"  name = "usuarioid" value= usuarioid />
+		    <input type="hidden"  name = "usuarioid" value= ${usuarioid} />
 		</div>
   
 		<input type = "submit" value = "Enviar" />
