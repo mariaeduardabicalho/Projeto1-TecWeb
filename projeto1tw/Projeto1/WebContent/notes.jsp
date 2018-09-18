@@ -43,6 +43,13 @@ PROJETO 1 TEC WEB
 
 	</li>
 	</c:forEach>
+	<!--   <form action="loga" method="POST">
+ 
+   
+    <input type="submit" value="Login" /> 
+   </form>-->
 	</ul>
+	
+	
 </body>
 </html>

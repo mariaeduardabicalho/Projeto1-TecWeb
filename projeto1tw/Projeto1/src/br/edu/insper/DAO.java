@@ -42,6 +42,7 @@ public class DAO {
 		usuario1.setSobrenome(rs.getString("sobrenome"));
 		usuario1.setEmail(rs.getString("email"));
 		usuario1.setTipo(rs.getString("tipo"));
+		usuario1.setUsuario(rs.getString("usuario"));
 		usuario1.setSenha(rs.getString("senha"));
 		usuario.add(usuario1);
 		
@@ -81,7 +82,7 @@ public class DAO {
 	
 	public void adicionau(Usuario usuario) throws SQLException {
 		String sql = "INSERT INTO usuario" +
-		"(primeiro_nome,sobrenome , email, tipo, usuario, senha) values(?,?,?,?,?)";
+		"(primeiro_nome,sobrenome , email, tipo, usuario, senha) values(?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -99,7 +100,7 @@ public class DAO {
 		
 		stmt.setString(5,usuario.getUsuario());
 		
-		stmt.setString(5,usuario.getSenha());
+		stmt.setString(6,usuario.getSenha());
 		
 		//System.out.println("atualizou");
 		
@@ -181,4 +182,9 @@ public class DAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-}}
+}
+	public void login(Usuario usuario) {
+		
+		// TODO Auto-generated method stub
+		
+	}}
