@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import org.junit.jupiter.api.Test;
 
 //import DAO;
 //import Notas;
@@ -32,6 +35,16 @@ import java.text.ParseException;
 @MultipartConfig
 public class Posta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
+	@Test
+	public void toBytes() 
+	  throws IOException {
+	    InputStream initialStream = new ByteArrayInputStream(new byte[] { 0, 1, 2 });
+	 
+	    byte[] targetArray = new byte[initialStream.available()];
+	    initialStream.read(targetArray);
+	}
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,16 +69,9 @@ public class Posta extends HttpServlet {
     		 throws ServletException, IOException {
 		    String conteudo = request.getParameter("conteudo"); // Retrieves <input type="text" name="description">
    		 	
-//		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
-		    //String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-//		    System.out.println(fileName.getClass());
-//		    System.out.println(fileName);
-//		    InputStream fileContent = (InputStream) filePart.getInputStream();
-//		    Image image = ImageIO.read(fileContent);
-//		    String contents = fileContent.toString();
+		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
+		    InputStream fileContent = (InputStream) filePart.getInputStream();
 		    InputStream stream = new ByteArrayInputStream("sem imagem".getBytes(StandardCharsets.UTF_8));
-
-
     		 DAO dao = null;
     		try {
     			dao = new DAO();
@@ -81,14 +87,11 @@ public class Posta extends HttpServlet {
     		 nota.setTipo_doc(request.getParameter("tipo_doc"));
     		 nota.setCategoria(request.getParameter("categoria"));
     		 nota.setImagem(stream);
-    		 
-
     		 nota.setUsuarioid(Integer.parseInt(request.getParameter("usuarioid")));
     		 }
     		 else {
         		 nota.setNome_doc(request.getParameter("nome_doc"));
-        		 nota.setConteudo(request.getParameter("arquivo"));
-//        		 nota.setImagem(fileContent);
+        		 nota.setImagem(fileContent);
         		 nota.setTipo_doc(request.getParameter("tipo_doc"));
         		 nota.setCategoria(request.getParameter("categoria"));
         		 nota.setConteudo("nota com imagem");

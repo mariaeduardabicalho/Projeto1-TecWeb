@@ -1,5 +1,8 @@
 package br.edu.insper;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -7,7 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+
+import com.mysql.cj.jdbc.Blob;
 
 
 
@@ -21,7 +27,7 @@ public class DAO {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "Du858773");
+	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "");
 	}
 	public List<Usuario> getListau() throws SQLException {
 		List<Usuario> usuario = new ArrayList<Usuario>();
@@ -65,6 +71,47 @@ public class DAO {
 		
 		while (rs.next()) {
 		Notas Notas1 = new Notas();
+		
+		
+		
+		
+		
+		Blob blob = (Blob) rs.getBlob("img");
+		
+		InputStream inputStream = blob.getBinaryStream();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		byte[] buffer = new byte[4096];
+		int bytesRead = -1;
+		try {
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+			    outputStream.write(buffer, 0, bytesRead);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		byte[] imageBytes = outputStream.toByteArray();
+		 
+		String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+		 
+		try {
+			inputStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			outputStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		Notas1.setBase64Image(base64Image);
 		Notas1.setId(rs.getInt("id"));
 		Notas1.setId(rs.getInt("pessoa_id"));
 		Notas1.setNome_doc(rs.getString("nome_doc"));
@@ -130,6 +177,7 @@ public class DAO {
 		stmt.setString(4,nota.getCategoria());
 		
 		stmt.setInt(5,nota.getUsuarioid());
+		
 		stmt.setBlob(6, nota.getImagem());
 
 		
@@ -237,6 +285,7 @@ public class DAO {
 		stmt.close();
 		return id;
 		}
+	
 	
 	
 	

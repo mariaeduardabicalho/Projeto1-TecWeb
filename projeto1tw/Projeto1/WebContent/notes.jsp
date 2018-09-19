@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 <!DOCTYPE html>
 
@@ -13,9 +17,14 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-PROJETO 1 TEC WEB
+
 <body>
+PROJETO 1 TEC WEB
 	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
+
+	
+	
+	
 	
 	<ul>
 	
@@ -24,7 +33,15 @@ PROJETO 1 TEC WEB
 	<a href = "#">
 	 <form action="Edita" method="GET">
 	 
-	 <img>${nota.imagem }</img>
+	 
+	 
+	 <c:if test = "${nota.conteudo == 'nota com imagem'}">
+	 <img src="data:image/jpg;base64,${nota.base64Image}" width="80" height="53"/>
+	 </c:if>
+	 
+	 
+	 
+	 
 	 
      <input type = "text" name = "nome_doc" value= ${nota.nome_doc} ><br/>
      <input type = "text" name = "categoria" value= ${nota.categoria} ><br/>
