@@ -32,15 +32,11 @@ PROJETO 1 TEC WEB
 	<li>
 	<a href = "#">
 	 <form action="Edita" method="GET">
-	 
-	 
+
 	 
 	 <c:if test = "${nota.conteudo == 'nota com imagem'}">
 	 <img src="data:image/jpg;base64,${nota.base64Image}" width="80" height="53"/>
 	 </c:if>
-	 
-	 
-	 
 	 
 	 
      <input type = "text" name = "nome_doc" value= ${nota.nome_doc} ><br/>
@@ -48,8 +44,12 @@ PROJETO 1 TEC WEB
      <input type = "hidden" name = "tipo_doc" value= ${nota.tipo_doc} ><br/>
      <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
      <input type="hidden" name="id" value = ${nota.id}>
-     
-     
+     <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
+     <input type="hidden" name="id" value = ${nota.id}>
+     <input type="hidden" name="usuarioid" value = ${nota.usuarioid}>
+    <h6> ${dao.pegarnome(Integer.parseInt(nota.usuarioid))}  </h6>
+      
+    
      
       <input type="submit" value="Editar" />
    </form> </a>
@@ -70,8 +70,8 @@ PROJETO 1 TEC WEB
     <input type="submit" value="Login" /> 
    </form>-->
 	</ul>
-	<% String usuario = (String)request.getAttribute("usuario");
-	System.out.println(usuario);%>
+ 	<% String usuario = (String)request.getAttribute("usuario");
+	%> 
 	<form action="FicarLogado" method="GET">
     
    	<input type="hidden" name="username" value=${usuario}>

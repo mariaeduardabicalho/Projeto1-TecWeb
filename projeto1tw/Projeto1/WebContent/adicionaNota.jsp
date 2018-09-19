@@ -62,7 +62,7 @@
   
 		<div class="form-group">
 		  <% Integer usuarioid = (Integer) request.getAttribute("usuarioid");
-	System.out.println(usuarioid);%>
+	%>
 		    <label for="categoria">Categoria</label>
 		    <input type="text" class="form-control" name = "categoria"/>
 		    <input type="hidden"  name = "usuarioid" value= ${usuarioid} />

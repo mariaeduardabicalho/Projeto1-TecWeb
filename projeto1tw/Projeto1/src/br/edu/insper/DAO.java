@@ -113,7 +113,7 @@ public class DAO {
 		
 		Notas1.setBase64Image(base64Image);
 		Notas1.setId(rs.getInt("id"));
-		Notas1.setId(rs.getInt("pessoa_id"));
+		Notas1.setUsuarioid(rs.getInt("pessoa_id"));
 		Notas1.setNome_doc(rs.getString("nome_doc"));
 		Notas1.setConteudo(rs.getString("conteudo"));
 		Notas1.setTipo_doc(rs.getString("tipo_doc"));
@@ -285,7 +285,66 @@ public class DAO {
 		stmt.close();
 		return id;
 		}
+	public String pegarnome(Integer id) throws SQLException {
+		String sql = "SELECT primeiro_nome FROM usuario where id=?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		stmt.setLong(1,id);
+		
+		ResultSet rs = stmt.executeQuery();
+		String nome = "manu";
+		
+		while (rs.next()) {
+		System.out.println(rs);
+		nome = rs.getString("primeiro_nome");
+		
+				
+		
+		System.out.println(id);
+		}
+		
+		rs.close();
+		stmt.close();
+		return  nome;
+		}
 	
+	public String pegarsobrenome(Integer id) throws SQLException {
+		String sql = "SELECT sobrenome FROM usuario where id=?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		stmt.setLong(1,id);
+		
+		ResultSet rs = stmt.executeQuery();
+	
+		String sobrenome = null;
+		
+		while (rs.next()) {
+		System.out.println(rs);
+		
+		sobrenome= rs.getString("sobrenome");
+				
+		
+		System.out.println(id);
+		}
+		
+		rs.close();
+		stmt.close();
+		return  sobrenome;
+		}
 	
 	
 	

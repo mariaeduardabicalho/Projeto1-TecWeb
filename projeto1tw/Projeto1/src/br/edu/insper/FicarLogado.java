@@ -30,7 +30,7 @@ public class FicarLogado extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("logado");
+		//System.out.println("logado");
 		DAO dao = null;
 		try {
 			dao = new DAO();
@@ -46,7 +46,7 @@ public class FicarLogado extends HttpServlet {
 		Integer usuarioid= null;
 		try {
 			 usuarioid = dao.pegarId(usuario.getUsuario());
-			 System.out.println(usuarioid);
+			 //System.out.println(usuarioid);
 			 request.setAttribute("usuarioid", usuarioid);
 			 request.getRequestDispatcher("adicionaNota.jsp").forward(request, response);
 		} catch (SQLException e) {
