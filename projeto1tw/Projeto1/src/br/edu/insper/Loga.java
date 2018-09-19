@@ -53,7 +53,7 @@ public class Loga extends HttpServlet {
 			for (Usuario usuariol:dao.getListau()) {
 
 				 if (request.getParameter("username").equals( usuariol.getUsuario()) && request.getParameter("password").equals( usuariol.getSenha())) {
-					 System.out.println("ENTROU NO IF");
+					 //System.out.println("ENTROU NO IF");
 					 usuario.setUsuario(request.getParameter("username"));
 					 //usuario.setSenha(request.getParameter("password"));
 					 request.setAttribute("usuario", usuario.getUsuario());
@@ -68,7 +68,7 @@ public class Loga extends HttpServlet {
 				 	 
 			 }
 		if (check == false){
-			System.out.println("Enao entrou no if else");
+			//System.out.println("Enao entrou no if else");
 			 response.sendRedirect("login.jsp?invalid=true");
 				 //response.sendRedirect("login.jsp");
 			

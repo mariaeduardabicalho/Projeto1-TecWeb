@@ -81,9 +81,9 @@ public class Posta extends HttpServlet {
     		 nota.setTipo_doc(request.getParameter("tipo_doc"));
     		 nota.setCategoria(request.getParameter("categoria"));
     		 nota.setImagem(stream);
-    		 
-
     		 nota.setUsuarioid(Integer.parseInt(request.getParameter("usuarioid")));
+    		 System.out.println(nota.getUsuarioid());
+    		 System.out.println("POSTA!!!");
     		 }
     		 else {
         		 nota.setNome_doc(request.getParameter("nome_doc"));
