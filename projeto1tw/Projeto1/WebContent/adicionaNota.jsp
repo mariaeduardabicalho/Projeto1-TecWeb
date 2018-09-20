@@ -53,6 +53,7 @@
   
 		  <% Integer usuarioid = (Integer) request.getAttribute("usuarioid");
 	%>
+
 		    <label for="categoria">Categoria: </label><br>
 		    <label class = "radio-inline"><input  type="radio"  name = "categoria" value = "comum" checked> Comum</label>
   		    <label class = "radio-inline"><input  type="radio"  name = "categoria" value = "aviso"> Aviso</label><br>
