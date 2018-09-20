@@ -70,7 +70,7 @@ public class Posta extends HttpServlet {
 		    String conteudo = request.getParameter("conteudo"); // Retrieves <input type="text" name="description">
    		 	
 		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
-		    InputStream fileContent = (InputStream) filePart.getInputStream();
+		   InputStream fileContent = (InputStream) filePart.getInputStream();
 		    InputStream stream = new ByteArrayInputStream("sem imagem".getBytes(StandardCharsets.UTF_8));
     		 DAO dao = null;
     		try {
@@ -88,12 +88,14 @@ public class Posta extends HttpServlet {
     		 nota.setCategoria(request.getParameter("categoria"));
     		 nota.setImagem(stream);
     		 nota.setUsuarioid(Integer.parseInt(request.getParameter("usuarioid")));
-    		 System.out.println(nota.getUsuarioid());
-    		 System.out.println("POSTA!!!");
+    		 
+    		 //System.out.println(nota.getUsuarioid());
+    		 //System.out.println("POSTA!!!");
+    		 
     		 }
     		 else {
         		 nota.setNome_doc(request.getParameter("nome_doc"));
-        		 nota.setImagem(fileContent);
+        		nota.setImagem(fileContent);
         		 nota.setTipo_doc(request.getParameter("tipo_doc"));
         		 nota.setCategoria(request.getParameter("categoria"));
         		 nota.setConteudo("nota com imagem");
@@ -106,7 +108,18 @@ public class Posta extends HttpServlet {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-    		 response.sendRedirect("notes.jsp");
+    		 String usuario = null;
+			try {
+				System.out.println("ENTROU NO TRY POSTA");
+				usuario = dao.pegarusuario(nota.getUsuarioid());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		 //response.sendRedirect("notes.jsp");
+			System.out.println(usuario);
+    		 request.setAttribute("usuario", usuario);
+			 request.getRequestDispatcher("notes.jsp").forward(request, response);
     		 dao.close();
     		 }
     		 

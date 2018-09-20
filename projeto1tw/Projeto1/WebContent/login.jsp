@@ -14,6 +14,16 @@
 <body>
 <jsp:useBean id="dao" class="br.edu.insper.DAO"/>
  
+ <% boolean invalid = Boolean.valueOf(String.valueOf(request.getAttribute("invalid")));
+ 	 System.out.println(invalid);
+	%>
+	
+	<c:if test = "${invalid}">
+	<%;
+ 	 System.out.println("ETROU NO IF LOGIN");
+	%>
+	<h6 > Dados invalidos</h6>
+	 </c:if>
  <form action = "Loga" method = "GET">
 <fieldset>
     <legend>Sign in</legend>
@@ -23,12 +33,6 @@
         <input type="text" id="username" name="username"
                required />
 
-         <c:forEach var="usuario" items="${dao.listau}" varStatus="id">
-	<li>
-	
-	<c:if test="${usuario.primeiro_nome == Username  }"></c:if>
-   </li>
-	</c:forEach>
 	</ul>
 
     </div>

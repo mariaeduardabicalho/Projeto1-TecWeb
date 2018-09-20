@@ -13,18 +13,39 @@
 
 
 <head>
+<link  href="http://fonts.googleapis.com/css?
+family=Reenie+Beanie:regular" 
+rel="stylesheet"
+type="text/css">
 <link rel="stylesheet" type="text/css" href="notas.css">
+
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-
+<% String usuario = (String)request.getAttribute("usuario");
+ 	 System.out.println(usuario);
+	%>
 <body>
 PROJETO 1 TEC WEB
-	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
 
-	
-	
-	
+
+	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
+ 
+ <c:if test = "${usuario== null}">
+ 		<% 
+ 	 System.out.println("ENTROUNO IF NOTES");
+	%>
+	  <form action="Loga" method="POST">
+   
+    <input type="submit" value="Login" />
+     </form>
+   <h6> Ainda não é cadastrado?</h6>
+     <form action="Cria1" method="POST">
+   
+    <input type="submit" value="Cadastro" />
+     </form>
+  
+	 </c:if>
 	
 	<ul>
 	
@@ -33,21 +54,23 @@ PROJETO 1 TEC WEB
 	<a href = "#">
 	 <form action="Edita" method="GET">
 
-	 
+	
 	 <c:if test = "${nota.conteudo == 'nota com imagem'}">
+	 
+
 	 <img src="data:image/jpg;base64,${nota.base64Image}" width="80" height="53"/>
 	 </c:if>
 	 
 	 
-     <input type = "text" name = "nome_doc" value= ${nota.nome_doc} ><br/>
+     < ${nota.nome_doc} > <br/>
+     
      <input type = "text" name = "categoria" value= ${nota.categoria} ><br/>
      <input type = "hidden" name = "tipo_doc" value= ${nota.tipo_doc} ><br/>
      <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
-     <input type="hidden" name="id" value = ${nota.id}>
-     <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
+     
      <input type="hidden" name="id" value = ${nota.id}>
      <input type="hidden" name="usuarioid" value = ${nota.usuarioid}>
-    <h6> ${dao.pegarnome(Integer.parseInt(nota.usuarioid))}  </h6>
+    <h6> ${dao.pegarnome(Integer.parseInt(nota.usuarioid))} ${dao.pegarsobrenome(Integer.parseInt(nota.usuarioid))} </h6>
       
     
      
@@ -64,20 +87,24 @@ PROJETO 1 TEC WEB
 
 	</li>
 	</c:forEach>
-	<!--   <form action="loga" method="POST">
- 
-   
-    <input type="submit" value="Login" /> 
-   </form>-->
 	</ul>
- 	<% String usuario = (String)request.getAttribute("usuario");
-	%> 
+ 	
+ 	
+ 	 
 	<form action="FicarLogado" method="GET">
     
    	<input type="hidden" name="username" value=${usuario}>
    	
    <input type="hidden" name="page" value="adicionaNota.jsp">
     <input type="submit" value="Adicionar Nota" />
+   </form>
+   
+   <h0>                                                       
+    </h0>
+   
+   <form action="Logout" method="POST">
+    
+    <input type="submit" value="Logout" />
    </form>
 	
 	

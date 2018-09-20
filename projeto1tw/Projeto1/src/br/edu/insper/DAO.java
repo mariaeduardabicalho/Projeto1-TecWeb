@@ -27,7 +27,7 @@ public class DAO {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "");
+	 connection = DriverManager.getConnection("jdbc:mysql://localhost/Projeto1", "root", "Du858773");
 	}
 	public List<Usuario> getListau() throws SQLException {
 		List<Usuario> usuario = new ArrayList<Usuario>();
@@ -198,7 +198,7 @@ public class DAO {
 			e.printStackTrace();
 		}
 		
-		System.out.println("apagou");
+		//System.out.println("apagou");
 		stmt.setLong(1, id);
 		
 		
@@ -236,29 +236,7 @@ public class DAO {
 			e.printStackTrace();
 		}
 }
-//	public Integer pegarid(String usuario) throws SQLException {
-//		Usuario usuario1 = new Usuario();
-//		PreparedStatement stmt = null;
-//		try {
-//			stmt = connection.
-//			 prepareStatement("SELECT usuario FROM usuario where usuario=?");
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		ResultSet rs = stmt.executeQuery();
-//		
-//	
-//		stmt.setString(1, usuario);
-//		
-//		usuario1.setId(rs.getInt("id"));
-//		Integer usuarioid= usuario1.getId();
-//		
-//		
-//		rs.close();
-//		stmt.close();
-//		return usuarioid;
-//	}
+
 	
 	public Integer pegarId(String usuario) throws SQLException {
 		String sql = "SELECT id FROM usuario where usuario=?";
@@ -276,9 +254,9 @@ public class DAO {
 		ResultSet rs = stmt.executeQuery();
 		Integer id = null;
 		while (rs.next()) {
-		System.out.println(rs);
+		//System.out.println(rs);
 		id=Integer.parseInt(rs.getObject(1).toString());;
-		System.out.println(id);
+		//System.out.println(id);
 		}
 		
 		rs.close();
@@ -302,12 +280,12 @@ public class DAO {
 		String nome = "manu";
 		
 		while (rs.next()) {
-		System.out.println(rs);
+		//System.out.println(rs);
 		nome = rs.getString("primeiro_nome");
 		
 				
 		
-		System.out.println(id);
+		//System.out.println(id);
 		}
 		
 		rs.close();
@@ -333,17 +311,47 @@ public class DAO {
 		String sobrenome = null;
 		
 		while (rs.next()) {
-		System.out.println(rs);
+		//System.out.println(rs);
 		
 		sobrenome= rs.getString("sobrenome");
 				
 		
-		System.out.println(id);
+		//System.out.println(id);
 		}
 		
 		rs.close();
 		stmt.close();
 		return  sobrenome;
+		}
+	public String pegarusuario(Integer id) throws SQLException {
+		String sql = "SELECT usuario FROM usuario where id=?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		stmt.setLong(1,id);
+		
+		ResultSet rs = stmt.executeQuery();
+	
+		String usuario = null;
+		
+		while (rs.next()) {
+		//System.out.println(rs);
+		
+		usuario= rs.getString("usuario");
+				
+		
+		//System.out.println(id);
+		}
+		
+		rs.close();
+		stmt.close();
+		return  usuario;
 		}
 	
 	

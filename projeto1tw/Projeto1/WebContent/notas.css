@@ -3,11 +3,12 @@
   padding:0;
 }
 body{
-  font-family:arial,sans-serif;
+  font-family:"Reenie Beanie",arial,sans-serif;
   font-size:100%;
   margin:3em;
   background:#666;
   color:#fff;
+  
 }
 h2,p{
   font-size:100%;
@@ -21,14 +22,45 @@ ul{
   padding:3em;
 }
 ul li a{
-  text-decoration:none;
+ 
   color:#000;
   background:#ffc;
   display:block;
   height:10em;
   width:10em;
   padding:1em;
+  font-family:"Reenie Beanie",arial,sans-serif;
+  
 }
 ul li{
   margin:1em;
   float:
+  }
+  
+  ul li h6 {
+  font-size:140%;
+  font-weight:bold;
+  padding-bottom:10px;
+}
+ul li p h0 h2{
+  font-family:"Reenie Beanie",arial,sans-serif;
+  font-size:200%;
+}
+ input[type=text]{
+    font-family:"Reenie Beanie",arial,sans-serif;
+  	font-size:100%;
+    color: #223254;
+    background:#ffc;
+  
+            
+}
+
+input[type=submit]{
+    font-family:"Reenie Beanie",arial,sans-serif;
+  	font-size:100%;
+    color: #223254;
+    background:#fff;
+    border-radius: 12px;
+  
+            
+}

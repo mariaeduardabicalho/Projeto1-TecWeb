@@ -47,8 +47,8 @@ public class Loga extends HttpServlet {
 		Usuario usuario = new Usuario();
 		
 		try {
-			System.out.println("no try");
-			System.out.println(dao.getListau());
+			//System.out.println("no try");
+			//System.out.println(dao.getListau());
 			
 			for (Usuario usuariol:dao.getListau()) {
 
@@ -59,7 +59,7 @@ public class Loga extends HttpServlet {
 					 request.setAttribute("usuario", usuario.getUsuario());
 					 request.getRequestDispatcher("notes.jsp").forward(request, response);
 					 
-					 System.out.println("entrou");
+					 //System.out.println("entrou");
 					 
 					
 					
@@ -69,8 +69,10 @@ public class Loga extends HttpServlet {
 			 }
 		if (check == false){
 			//System.out.println("Enao entrou no if else");
-			 response.sendRedirect("login.jsp?invalid=true");
-				 //response.sendRedirect("login.jsp");
+			 //response.sendRedirect("login.jsp?invalid=true");
+			 request.setAttribute("invalid", true);
+			 request.getRequestDispatcher("login.jsp").forward(request, response);
+    		 dao.close();
 			
 		}	
 		 
@@ -87,7 +89,7 @@ public class Loga extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.sendRedirect("login.jsp");
 		
 		;
 		//doGet(request, response);
