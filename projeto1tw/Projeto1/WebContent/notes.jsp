@@ -55,8 +55,8 @@ type="text/css">
 	<c:forEach var="nota" items="${dao.lista}" varStatus="id">
 
  		<li>
-	<a href = "#" style = "background:#${nota.categoria == 'aviso'? 'FF5359' : 'B9F1FF' }">
-	 <form action="Edita" method="POST">
+	<a style = "background:#${nota.categoria == 'aviso'? 'FF5359' : 'B9F1FF' }">
+	 <form action="Edita" method="GET">
 	 
 	<p> ${nota.nome_doc} </p> <br/>
      
@@ -65,6 +65,7 @@ type="text/css">
 	 <img src="data:image/jpg;base64,${nota.base64Image}" width="80" height="53"/>
 	 </c:if>
 	 
+     <input type = "hidden" name = "nome_doc" value= ${nota.nome_doc} ><br/>
 	 
      <input type = "hidden" name = "tipo_doc" value= ${nota.tipo_doc} ><br/>
      <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>

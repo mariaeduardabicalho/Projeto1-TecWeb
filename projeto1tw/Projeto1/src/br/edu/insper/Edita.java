@@ -34,7 +34,6 @@ throws ServletException, IOException {
 	nota.setNome_doc(request.getParameter("nome_doc"));
 	nota.setConteudo(request.getParameter("conteudo"));
 	nota.setTipo_doc(request.getParameter("tipo_doc"));
-	nota.setCategoria(request.getParameter("categoria"));
 	nota.setId(Integer.valueOf(request.getParameter("id")));
 	
 
