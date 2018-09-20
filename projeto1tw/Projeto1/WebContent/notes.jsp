@@ -26,7 +26,7 @@ type="text/css">
  	 System.out.println(usuario);
 	%>
 <body>
-PROJETO 1 TEC WEB
+<h0>  PROJETO 1 TEC WEB </h0>
 
 
 	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
@@ -62,16 +62,16 @@ PROJETO 1 TEC WEB
 	 </c:if>
 	 
 	 
-     < ${nota.nome_doc} > <br/>
+     <h1>  < ${nota.nome_doc} > <br/></h1>
      
      <input type = "text" name = "categoria" value= ${nota.categoria} ><br/>
      <input type = "hidden" name = "tipo_doc" value= ${nota.tipo_doc} ><br/>
      <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
-     
      <input type="hidden" name="id" value = ${nota.id}>
      <input type="hidden" name="usuarioid" value = ${nota.usuarioid}>
+ 
     <h6> ${dao.pegarnome(Integer.parseInt(nota.usuarioid))} ${dao.pegarsobrenome(Integer.parseInt(nota.usuarioid))} </h6>
-      
+      <h6> ${nota.data_postagem} </h6> <br/>
     
      
       <input type="submit" value="Editar" />

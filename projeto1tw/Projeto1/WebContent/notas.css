@@ -10,6 +10,9 @@ body{
   color:#fff;
   
 }
+h0{
+	font-size:250%;
+}
 h2,p{
   font-size:100%;
   font-weight:normal;
@@ -26,8 +29,8 @@ ul li a{
   color:#000;
   background:#ffc;
   display:block;
-  height:10em;
-  width:10em;
+  height:20em;
+  width:20em;
   padding:1em;
   font-family:"Reenie Beanie",arial,sans-serif;
   
@@ -38,7 +41,7 @@ ul li{
   }
   
   ul li h6 {
-  font-size:140%;
+  font-size:150%;
   font-weight:bold;
   padding-bottom:10px;
 }
@@ -48,7 +51,7 @@ ul li p h0 h2{
 }
  input[type=text]{
     font-family:"Reenie Beanie",arial,sans-serif;
-  	font-size:100%;
+  	font-size:150%;
     color: #223254;
     background:#ffc;
   
@@ -63,4 +66,11 @@ input[type=submit]{
     border-radius: 12px;
   
             
+}
+
+h6{
+	font-size:150%;
+}
+h1{
+	font-size:200%;
 }

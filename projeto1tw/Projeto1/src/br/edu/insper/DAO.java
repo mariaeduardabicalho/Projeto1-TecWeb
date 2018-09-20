@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -118,6 +120,7 @@ public class DAO {
 		Notas1.setConteudo(rs.getString("conteudo"));
 		Notas1.setTipo_doc(rs.getString("tipo_doc"));
 		Notas1.setCategoria(rs.getString("categoria"));
+		Notas1.setData_postagem(rs.getDate("dataehora"));
 		Notas.add(Notas1);
 		
 		}
@@ -160,7 +163,7 @@ public class DAO {
 	public void adiciona(Notas nota) throws SQLException {
 
 		String sql = "INSERT INTO Notes" +
-		"( nome_doc,conteudo , tipo_doc, categoria, pessoa_id,img) values(?,?,?,?,?,?)";
+		"( nome_doc,conteudo , tipo_doc, categoria, pessoa_id,img, data_postagem) values(?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -179,6 +182,8 @@ public class DAO {
 		stmt.setInt(5,nota.getUsuarioid());
 		
 		stmt.setBlob(6, nota.getImagem());
+		
+		
 
 		
 		//System.out.println("atualizou");
