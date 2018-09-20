@@ -57,6 +57,7 @@ type="text/css">
  		<li>
 	<a style = "background:#${nota.categoria == 'aviso'? 'FF5359' : 'B9F1FF' }">
 	 <form action="Edita" method="GET">
+	 <input type="hidden" name="username" value=${usuario}>
 	 
 	<p> ${nota.nome_doc} </p> <br/>
      
@@ -83,6 +84,7 @@ type="text/css">
    <form action="Apaga" method="GET">
    
    	<input type="hidden" name="id" value=${nota.id}>
+   	<input type="hidden" name="username" value=${usuario}>
    
     <input type="submit" value="Apagar" />
    </form>

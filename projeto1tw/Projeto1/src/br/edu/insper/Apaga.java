@@ -45,7 +45,16 @@ public class Apaga extends HttpServlet {
 			e.printStackTrace();
 		}
 		 
-		 response.sendRedirect("notes.jsp");
+		 //response.sendRedirect("notes.jsp");
+		 Usuario usuario1 = new Usuario();
+			
+		usuario1.setUsuario(request.getParameter("username"));
+		
+		String usuario=  usuario1.getUsuario();
+		
+		System.out.println(usuario);
+		 request.setAttribute("usuario", usuario);
+			 request.getRequestDispatcher("notes.jsp").forward(request, response);
 		 dao.close();
 		
 	}

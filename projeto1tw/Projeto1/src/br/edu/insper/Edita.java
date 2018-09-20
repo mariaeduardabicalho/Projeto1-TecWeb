@@ -45,7 +45,23 @@ throws ServletException, IOException {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	response.sendRedirect("notes.jsp");
+	//response.sendRedirect("notes.jsp");
+	
+	 nota.setUsuarioid(Integer.parseInt(request.getParameter("usuarioid")));
+	 
+		
+	 String usuario = null;
+		try {
+			System.out.println("ENTROU NO TRY POSTA");
+			usuario = dao.pegarusuario(nota.getUsuarioid());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 //response.sendRedirect("notes.jsp");
+		System.out.println(usuario);
+	 request.setAttribute("usuario", usuario);
+		 request.getRequestDispatcher("notes.jsp").forward(request, response);
 	dao.close();
 	
 }
