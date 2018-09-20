@@ -163,7 +163,7 @@ public class DAO {
 	public void adiciona(Notas nota) throws SQLException {
 
 		String sql = "INSERT INTO Notes" +
-		"( nome_doc,conteudo , tipo_doc, categoria, pessoa_id,img, data_postagem) values(?,?,?,?,?,?)";
+		"( nome_doc,conteudo , tipo_doc, categoria, pessoa_id,img, data_postagem) values(?,?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -182,6 +182,8 @@ public class DAO {
 		stmt.setInt(5,nota.getUsuarioid());
 		
 		stmt.setBlob(6, nota.getImagem());
+		
+		stmt.setDate(7, (Date) nota.getData_postagem());
 		
 		
 

@@ -56,7 +56,7 @@ type="text/css">
 
  		<li>
 	<a href = "#" style = "background:#${nota.categoria == 'aviso'? 'FF5359' : 'B9F1FF' }">
-	 <form action="Edita" method="GET">
+	 <form action="Edita" method="POST">
 	 
 	<p> ${nota.nome_doc} </p> <br/>
      
