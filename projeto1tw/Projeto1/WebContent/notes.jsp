@@ -90,8 +90,9 @@ PROJETO 1 TEC WEB
 	</ul>
  	
  	
- 	 
-	<form action="FicarLogado" method="GET">
+ 	  <c:if test = "${usuario!= null}">
+
+  <form action="FicarLogado" method="GET">
     
    	<input type="hidden" name="username" value=${usuario}>
    	
@@ -99,6 +100,8 @@ PROJETO 1 TEC WEB
     <input type="submit" value="Adicionar Nota" />
    </form>
    
+	 </c:if>
+	
    <h0>                                                       
     </h0>
    
