@@ -21,13 +21,6 @@ type="text/css">
 
 <meta charset="ISO-8859-1">
 
-<script>
-(function mudaCor1() {
-	document.a.style.background = "red";
-})();
-	document.get
-</script>
-
 
 <title>Mural</title>
 </head>
@@ -36,6 +29,7 @@ type="text/css">
 	%>
 <body>
 <h1>Mural de Notas</h1>
+
 
 
 	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
@@ -59,10 +53,9 @@ type="text/css">
 	<ul>
 	
 	<c:forEach var="nota" items="${dao.lista}" varStatus="id">
-<!-- 	<li bgcolor="#${nota.categoria == 'aviso' ? 'bbffcc' : 'ffffbb'}">
- -->		
- 		<li bgcolor="#${id.count%2 == 0 ? 'bbffcc' : 'ffffbb' }">
-	<a href = "#" style = "background:#${id.count%2 == 0 ? 'FF5359' : 'B9F1FF' }">
+
+ 		<li>
+	<a href = "#" style = "background:#${nota.categoria == 'aviso'? 'FF5359' : 'B9F1FF' }">
 	 <form action="Edita" method="GET">
 	 
 	<p> ${nota.nome_doc} </p> <br/>
@@ -73,20 +66,13 @@ type="text/css">
 	 </c:if>
 	 
 	 
-	 <c:if test = "${nota.categoria == 'aviso'}">
-	 	 mudaCor1();
-	 </c:if>
-	 	 <c:if test = "${nota.categoria == 'comum'}">
-	 	 mudaCor2();
-	 </c:if>
-	 
-	 
      <input type = "hidden" name = "tipo_doc" value= ${nota.tipo_doc} ><br/>
      <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
      <input type="hidden" name="id" value = ${nota.id}>
      <input type="hidden" name="usuarioid" value = ${nota.usuarioid}>
+ 
     <h6> ${dao.pegarnome(Integer.parseInt(nota.usuarioid))} ${dao.pegarsobrenome(Integer.parseInt(nota.usuarioid))} </h6>
-      
+      <h6> ${nota.data_postagem} </h6> <br/>
     
      
       <input type="submit" value="Editar" />
@@ -105,8 +91,9 @@ type="text/css">
 	</ul>
  	
  	
- 	 
-	<form action="FicarLogado" method="GET">
+ 	  <c:if test = "${usuario!= null}">
+
+  <form action="FicarLogado" method="GET">
     
    	<input type="hidden" name="username" value=${usuario}>
    	
@@ -114,6 +101,8 @@ type="text/css">
     <input type="submit" value="Adicionar Nota" />
    </form>
    
+	 </c:if>
+	
    <h0>                                                       
     </h0>
    
