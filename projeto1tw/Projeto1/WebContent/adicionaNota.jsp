@@ -10,15 +10,6 @@
 </head>
 <body>
 
-<!--     <form action = "Posta" method = "POST">
-      <div>Titulo: <input type = "text" name = "nome_doc"><br/></div>
-      <div>Conteudo: <input type = "text" name = "conteudo" /><br/></div>
-      <div>Tipo: <input type = "text" name = "tipo_doc" /><br/></div>
-      <div>Categoria:<input type = "text" name = "categoria" /></div>
-      enctype = "multipart/form-data"
-      <input type = "submit" value = "Submit" />
-   </form>
-  -->
 <div style = "text-align:center"><h1>Preencha sua Nota</h1></div>
 
 <section class = "container">
@@ -27,7 +18,7 @@
 
    <form action = "Posta" method = "POST"  class = "col-lg-4" enctype="multipart/form-data">  
 	   
-		<div class="form-group escondido">
+		<div class="form-group ">
 	   		<label  for="nome_doc">Título</label>
 	    	<input type="text" class="form-control" name = "nome_doc"/>
 	 	</div>
@@ -57,16 +48,18 @@
 				} 
 		</script>
 
-		<div id = "conteudo"></div>
+		<div id = "conteudo"></div><br>
 
   
-		<div class="form-group">
 		  <% Integer usuarioid = (Integer) request.getAttribute("usuarioid");
 	%>
-		    <label for="categoria">Categoria</label>
-		    <input type="text" class="form-control" name = "categoria"/>
-		    <input type="hidden"  name = "usuarioid" value= ${usuarioid} />
-		</div>
+		    <label for="categoria">Categoria: </label><br>
+		    <label class = "radio-inline"><input  type="radio"  name = "categoria" value = "comum" checked> Comum</label>
+  		    <label class = "radio-inline"><input  type="radio"  name = "categoria" value = "aviso"> Aviso</label><br>
+		   
+		    
+		
+		<input type="hidden"  name = "usuarioid" value= ${usuarioid} />
   
 		<input type = "submit" value = "Enviar" />
 	</form>

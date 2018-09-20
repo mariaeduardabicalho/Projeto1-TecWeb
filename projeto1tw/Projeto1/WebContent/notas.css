@@ -3,10 +3,10 @@
   padding:0;
 }
 body{
-  font-family:"Reenie Beanie",arial,sans-serif;
+  font-family:Poppins,arial,sans-serif;
   font-size:100%;
   margin:3em;
-  background:#666;
+  background:#141A26;
   color:#fff;
   
 }
@@ -21,15 +21,15 @@ ul{
   overflow:hidden;
   padding:3em;
 }
-ul li a{
+a{
  
   color:#000;
-  background:#ffc;
+/*   background:#ffc; */
   display:block;
   height:10em;
   width:10em;
   padding:1em;
-  font-family:"Reenie Beanie",arial,sans-serif;
+  font-family:"Poppins",arial,sans-serif;
   
 }
 ul li{
@@ -43,11 +43,11 @@ ul li{
   padding-bottom:10px;
 }
 ul li p h0 h2{
-  font-family:"Reenie Beanie",arial,sans-serif;
+  font-family:"Poppins",arial,sans-serif;
   font-size:200%;
 }
  input[type=text]{
-    font-family:"Reenie Beanie",arial,sans-serif;
+    font-family:"Poppins",arial,sans-serif;
   	font-size:100%;
     color: #223254;
     background:#ffc;
@@ -56,7 +56,7 @@ ul li p h0 h2{
 }
 
 input[type=submit]{
-    font-family:"Reenie Beanie",arial,sans-serif;
+    font-family:"Poppins",arial,sans-serif;
   	font-size:100%;
     color: #223254;
     background:#fff;

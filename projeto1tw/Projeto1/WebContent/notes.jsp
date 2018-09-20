@@ -20,13 +20,22 @@ type="text/css">
 <link rel="stylesheet" type="text/css" href="notas.css">
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+
+<script>
+(function mudaCor1() {
+	document.a.style.background = "red";
+})();
+	document.get
+</script>
+
+
+<title>Mural</title>
 </head>
 <% String usuario = (String)request.getAttribute("usuario");
  	 System.out.println(usuario);
 	%>
 <body>
-PROJETO 1 TEC WEB
+<h1>Mural de Notas</h1>
 
 
 	<jsp:useBean id="dao" class="br.edu.insper.DAO"/>
@@ -50,24 +59,30 @@ PROJETO 1 TEC WEB
 	<ul>
 	
 	<c:forEach var="nota" items="${dao.lista}" varStatus="id">
-	<li>
-	<a href = "#">
+<!-- 	<li bgcolor="#${nota.categoria == 'aviso' ? 'bbffcc' : 'ffffbb'}">
+ -->		
+ 		<li bgcolor="#${id.count%2 == 0 ? 'bbffcc' : 'ffffbb' }">
+	<a href = "#" style = "background:#${id.count%2 == 0 ? 'FF5359' : 'B9F1FF' }">
 	 <form action="Edita" method="GET">
-
-	
-	 <c:if test = "${nota.conteudo == 'nota com imagem'}">
 	 
+	<p> ${nota.nome_doc} </p> <br/>
+     
 
+	 <c:if test = "${nota.conteudo == 'nota com imagem'}">
 	 <img src="data:image/jpg;base64,${nota.base64Image}" width="80" height="53"/>
 	 </c:if>
 	 
 	 
-     < ${nota.nome_doc} > <br/>
-     
-     <input type = "text" name = "categoria" value= ${nota.categoria} ><br/>
+	 <c:if test = "${nota.categoria == 'aviso'}">
+	 	 mudaCor1();
+	 </c:if>
+	 	 <c:if test = "${nota.categoria == 'comum'}">
+	 	 mudaCor2();
+	 </c:if>
+	 
+	 
      <input type = "hidden" name = "tipo_doc" value= ${nota.tipo_doc} ><br/>
      <input type = "text" name = "conteudo" value= ${nota.conteudo} ><br/>
-     
      <input type="hidden" name="id" value = ${nota.id}>
      <input type="hidden" name="usuarioid" value = ${nota.usuarioid}>
     <h6> ${dao.pegarnome(Integer.parseInt(nota.usuarioid))} ${dao.pegarsobrenome(Integer.parseInt(nota.usuarioid))} </h6>

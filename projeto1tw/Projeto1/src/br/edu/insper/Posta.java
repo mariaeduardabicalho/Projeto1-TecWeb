@@ -67,11 +67,16 @@ public class Posta extends HttpServlet {
 	 protected void doPost(HttpServletRequest request,
     		 HttpServletResponse response)
     		 throws ServletException, IOException {
-		    String conteudo = request.getParameter("conteudo"); // Retrieves <input type="text" name="description">
+		    String conteudo = request.getParameter("conteudo"); 
+		    InputStream fileContent = null;
+		    
+		    if(conteudo == null) {
    		 	
-		    Part filePart = request.getPart("arquivo"); // Retrieves <input type="file" name="file">
-		   InputStream fileContent = (InputStream) filePart.getInputStream();
+		    Part filePart = request.getPart("arquivo"); 
+		   fileContent = (InputStream) filePart.getInputStream();
+		    }
 		    InputStream stream = new ByteArrayInputStream("sem imagem".getBytes(StandardCharsets.UTF_8));
+		    
     		 DAO dao = null;
     		try {
     			dao = new DAO();
